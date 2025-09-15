@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Government Degree College Nelakondapally | Excellence in Education Since 2008</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #2c5aa0;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #2c5aa0;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="%23ffffff10" points="0,1000 1000,800 1000,1000"/></svg>');
+            background-size: cover;
+        }
+
+        .hero-content {
+            text-align: center;
+            color: white;
+            z-index: 2;
+            max-width: 800px;
+            padding: 0 2rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #ff6b6b;
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 107, 107, 0.4);
+        }
+
+        /* Floating Elements */
+        .floating-element {
+            position: absolute;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-element:nth-child(1) {
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .floating-element:nth-child(2) {
+            top: 60%;
+            right: 15%;
+            animation-delay: 2s;
+        }
+
+        .floating-element:nth-child(3) {
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 4s;
+        }
+
+        /* About Section */
+        .about {
+            padding: 6rem 0;
+            background: linear-gradient(45deg, #f8f9ff 0%, #fff 100%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 2.8rem;
+            color: #2c5aa0;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #2c5aa0;
+            display: block;
+        }
+
+        .stat-label {
+            color: #666;
+            margin-top: 0.5rem;
+        }
+
+        /* Programs Section */
+        .programs {
+            padding: 6rem 0;
+            background: #2c5aa0;
+            color: white;
+        }
+
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .program-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .program-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, transparent 0%, rgba(255,255,255,0.1) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .program-card:hover::before {
+            opacity: 1;
+        }
+
+        .program-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .program-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .program-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        /* Facilities Section */
+        .facilities {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        .facilities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .facility-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .facility-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .facility-image {
+            height: 200px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: white;
+        }
+
+        .facility-content {
+            padding: 2rem;
+        }
+
+        .facility-title {
+            font-size: 1.4rem;
+            color: #2c5aa0;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .facility-description {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Campus Life Section */
+        .campus-life {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .campus-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 6rem 0;
+            background: #1a1a2e;
+            color: white;
+        }
+
+        .contact-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .contact-item {
+            padding: 1.5rem;
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .contact-item h4 {
+            margin-bottom: 0.5rem;
+            color: #ff6b6b;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .scroll-reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 1.5rem;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="#" class="logo">GDC Nelakondapally</a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#programs">Programs</a></li>
+                <li><a href="#facilities">Facilities</a></li>
+                <li><a href="#campus">Campus Life</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="floating-element">🎓</div>
+        <div class="floating-element">📚</div>
+        <div class="floating-element">⚛️</div>
+        
+        <div class="hero-content">
+            <h1>Government Degree College<br>Nelakondapally</h1>
+            <p class="hero-subtitle">Excellence in Education Since 2008 | Nurturing Future-Ready Graduates</p>
+            <a href="#about" class="cta-button">Explore Our Campus</a>
+        </div>
+        
+        <div class="scroll-indicator">↓</div>
+    </section>
+
+    <section id="about" class="about scroll-reveal">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">About Our Institution</h2>
+                <p class="section-subtitle">A beacon of holistic education nestled in nature's embrace</p>
+            </div>
+            
+            <div class="about-grid">
+                <div>
+                    <p class="about-text">
+                        Established in 2008, Government Degree College Nelakondapally stands as a testament to educational excellence. Located in a serene landscape just off the highway, our campus offers a peaceful and inspiring learning atmosphere that perfectly balances academic rigor with natural tranquility.
+                    </p>
+                    <br>
+                    <p class="about-text">
+                        We are committed to providing comprehensive education that prepares students for the challenges of tomorrow. Our modern infrastructure, dedicated faculty, and student-centric approach create an environment where learning transcends traditional boundaries.
+                    </p>
+                </div>
+                
+                <div class="about-stats">
+                    <div class="stat-card">
+                        <span class="stat-number">17</span>
+                        <span class="stat-label">Years of Excellence</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">1000+</span>
+                        <span class="stat-label">Graduates</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">4</span>
+                        <span class="stat-label">Major Programs</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">100%</span>
+                        <span class="stat-label">Placement Support</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="programs" class="programs scroll-reveal">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Academic Programs</h2>
+                <p class="section-subtitle">Diverse courses designed to unlock your potential</p>
+            </div>
+            
+            <div class="programs-grid">
+                <div class="program-card">
+                    <div class="program-icon">💼</div>
+                    <h3 class="program-title">B.Com (Computer Applications)</h3>
+                    <p>Comprehensive commerce education with cutting-edge computer applications, preparing students for the digital business world.</p>
+                </div>
+                
+                <div class="program-card">
+                    <div class="program-icon">🧬</div>
+                    <h3 class="program-title">BZC (Biology, Zoology, Chemistry)</h3>
+                    <p>Advanced life sciences program fostering research mindset and practical understanding of biological systems.</p>
+                </div>
+                
+                <div class="program-card">
+                    <div class="program-icon">🔬</div>
+                    <h3 class="program-title">MPC (Math, Physics, Chemistry)</h3>
+                    <p>Strong foundation in physical sciences and mathematics, ideal for engineering and research aspirations.</p>
+                </div>
+                
+                <div class="program-card">
+                    <div class="program-icon">📖</div>
+                    <h3 class="program-title">Bachelor of Arts (BA)</h3>
+                    <p>Liberal arts education emphasizing critical thinking, communication skills, and cultural understanding.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="facilities" class="facilities scroll-reveal">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">World-Class Facilities</h2>
+                <p class="section-subtitle">Modern infrastructure supporting comprehensive learning</p>
+            </div>
+            
+            <div class="facilities-grid">
+                <div class="facility-card">
+                    <div class="facility-image">💻</div>
+                    <div class="facility-content">
+                        <h3 class="facility-title">Advanced Computer Labs</h3>
+                        <p class="facility-description">State-of-the-art computer laboratories equipped with latest software and high-speed internet, enabling hands-on learning in programming, digital applications, and emerging technologies.</p>
+                    </div>
+                </div>
+                
+                <div class="facility-card">
+                    <div class="facility-image">🔬</div>
+                    <div class="facility-content">
+                        <h3 class="facility-title">Modern Science Labs</h3>
+                        <p class="facility-description">Fully equipped chemistry and biology laboratories with modern instruments and safety protocols, fostering practical understanding and research capabilities.</p>
+                    </div>
+                </div>
+                
+                <div class="facility-card">
+                    <div class="facility-image">⚡</div>
+                    <div class="facility-content">
+                        <h3 class="facility-title">Physics Research Lab</h3>
+                        <p class="facility-description">Advanced physics laboratory with precision instruments and experimental setups, encouraging scientific inquiry and hands-on exploration of physical phenomena.</p>
+                    </div>
+                </div>
+                
+                <div class="facility-card">
+                    <div class="facility-image">🏠</div>
+                    <div class="facility-content">
+                        <h3 class="facility-title">Free Residential Hostel</h3>
+                        <p class="facility-description">Comfortable hostel accommodation with nutritious meals provided free of cost, ensuring students can focus entirely on their academic pursuits without financial burden.</p>
+                    </div>
+                </div>
+                
+                <div class="facility-card">
+                    <div class="facility-image">🏃‍♂️</div>
+                    <div class="facility-content">
+                        <h3 class="facility-title">Sports Complex</h3>
+                        <p class="facility-description">Expansive sports ground with complete facilities for various indoor and outdoor sports, promoting physical fitness and healthy competition among students.</p>
+                    </div>
+                </div>
+                
+                <div class="facility-card">
+                    <div class="facility-image">📚</div>
+                    <div class="facility-content">
+                        <h3 class="facility-title">Digital Library</h3>
+                        <p class="facility-description">Comprehensive library with vast collection of books, journals, and digital resources, creating an ideal environment for research and self-study.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="campus" class="campus-life scroll-reveal">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Holistic Campus Life</h2>
+                <p class="section-subtitle">Where academics meet personal growth and community building</p>
+            </div>
+            
+            <div class="campus-features">
+                <div class="feature-item">
+                    <div class="feature-icon">🌿</div>
+                    <h4 class="feature-title">Peaceful Environment</h4>
+                    <p>Serene campus surrounded by natural beauty, perfect for focused learning</p>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">🤝</div>
+                    <h4 class="feature-title">Student Support</h4>
+                    <p>Comprehensive support system ensuring every student's academic and personal success</p>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">🎯</div>
+                    <h4 class="feature-title">Career Guidance</h4>
+                    <p>Professional career counseling and placement assistance for bright futures</p>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">🏆</div>
+                    <h4 class="feature-title">Excellence Awards</h4>
+                    <p>Recognition and rewards for outstanding academic and extracurricular achievements</p>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">🔬</div>
+                    <h4 class="feature-title">Research Culture</h4>
+                    <p>Encouraging innovation and research mindset among students and faculty</p>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">🌐</div>
+                    <h4 class="feature-title">Modern Outlook</h4>
+                    <p>Progressive approach combining traditional values with contemporary education</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact scroll-reveal">
+        <div class="container">
+            <div class="contact-content">
+                <h2 class="section-title">Get In Touch</h2>
+                <p class="section-subtitle">Begin your journey towards academic excellence</p>
+                
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <h4>📍 Location</h4>
+                        <p>Highway Road, Nelakondapally<br>Beautiful Natural Campus</p>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <h4>📞 Admissions</h4>
+                        <p>Contact for admission details<br>Visit our campus anytime</p>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <h4>🌟 Established</h4>
+                        <p>Since 2008<br>17 Years of Excellence</p>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <h4>🎯 Mission</h4>
+                        <p>Holistic Education<br>Future-Ready Graduates</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Scroll reveal animation
+        const scrollReveal = () => {
+            const reveals = document.querySelectorAll('.scroll-reveal');
+            reveals.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementTop < windowHeight - 100) {
+                    element.classList.add('revealed');
+                }
+            });
+        };
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Header background on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = '0 2px 30px rgba(0,0,0,0.15)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
+            }
+            scrollReveal();
+        });
+
+        // Initial scroll reveal check
+        window.addEventListener('load', scrollReveal);
+        
+        // Add interactive hover effects for cards
+        document.querySelectorAll('.stat-card, .program-card, .facility-card, .feature-item').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Parallax effect for hero section
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            if (hero) {
+                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+    </script>
+</body>
+</html>
