@@ -130,6 +130,19 @@
             gap: 2.5rem;
         }
 
+        .nav-links.active {
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: rgba(15, 15, 35, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 2rem;
+            z-index: 999;
+        }
+
         .nav-links a {
             text-decoration: none;
             color: var(--text-light);
@@ -171,6 +184,8 @@
             flex-direction: column;
             cursor: pointer;
             padding: 0.5rem;
+            position: relative;
+            z-index: 1001;
         }
 
         .mobile-menu span {
@@ -182,10 +197,35 @@
             transition: all 0.3s ease;
         }
 
+        .mobile-menu.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .mobile-menu.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        .close-menu {
+            display: none;
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            color: var(--text-light);
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 1002;
+        }
+
         /* Hero Section with 3D Effects */
         .hero {
             height: 100vh;
             background: 
+                url('college-building.png') center/cover no-repeat,
                 radial-gradient(ellipse at top, rgba(102, 126, 234, 0.3) 0%, transparent 50%),
                 radial-gradient(ellipse at bottom, rgba(118, 75, 162, 0.3) 0%, transparent 50%),
                 linear-gradient(135deg, #0f0f23 0%, #1a1a3e 100%);
@@ -239,12 +279,29 @@
             background: var(--glass-bg);
             backdrop-filter: blur(20px);
             border: 1px solid var(--glass-border);
-            padding: 0.75rem 1.5rem;
+            padding: 0.75rem 2rem;
             border-radius: 50px;
             margin-bottom: 2rem;
-            font-size: 0.9rem;
-            font-weight: 600;
-            animation: fadeInUp 0.8s ease 0.2s both;
+            font-size: 1rem;
+            font-weight: 700;
+            animation: fadeInUp 0.8s ease 0.2s both, pulse 2s ease-in-out infinite;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-badge::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .hero-badge:hover::before {
+            left: 100%;
         }
 
         .hero h1 {
@@ -873,6 +930,15 @@
             }
         }
 
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
         .scroll-reveal {
             opacity: 0;
             transform: translateY(50px);
@@ -954,8 +1020,16 @@
                 display: none;
             }
             
+            .nav-links.active {
+                display: flex;
+            }
+            
             .mobile-menu {
                 display: flex;
+            }
+            
+            .close-menu {
+                display: block;
             }
             
             .hero h1 {
@@ -1117,6 +1191,7 @@
                 <span></span>
                 <span></span>
             </div>
+            <i class="fas fa-times close-menu" id="closeMenu"></i>
         </nav>
     </header>
 
@@ -1739,19 +1814,24 @@
         // Mobile Menu Toggle
         const mobileMenu = document.querySelector('.mobile-menu');
         const navLinks = document.querySelector('.nav-links');
+        const closeMenu = document.getElementById('closeMenu');
 
         mobileMenu.addEventListener('click', () => {
-            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+            mobileMenu.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        closeMenu.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+            navLinks.classList.remove('active');
         });
 
         // Performance Optimization
         let ticking = false;
 
         function updateOnScroll() {
-            // Throttle scroll events
             if (!ticking) {
                 requestAnimationFrame(() => {
-                    // Your scroll-based animations here
                     ticking = false;
                 });
                 ticking = true;
@@ -1762,7 +1842,7 @@
 
         // Preload Critical Resources
         const preloadImages = [
-            // Add any critical images here for preloading
+            'college-building.png'
         ];
 
         preloadImages.forEach(src => {
@@ -1782,17 +1862,13 @@
             rootMargin: '50px'
         });
 
-        // Observe all cards for lazy animation
         document.querySelectorAll('.program-card, .facility-card, .campus-card, .contact-card').forEach(el => {
             lazyLoadObserver.observe(el);
         });
 
         // Enhanced Mobile Experience
         if (window.innerWidth <= 768) {
-            // Reduce particle count for mobile
             document.getElementById('particles').style.display = 'none';
-            
-            // Simplify animations for better performance
             document.querySelectorAll('.floating-3d').forEach(el => {
                 el.style.display = 'none';
             });
@@ -1850,7 +1926,6 @@
                 const targetElement = document.querySelector(targetId);
                 
                 if (targetElement) {
-                    // Add smooth transition effect
                     targetElement.style.opacity = '0.7';
                     targetElement.style.transform = 'scale(1.02)';
                     
@@ -1882,14 +1957,12 @@
 
         // Initialize all animations and effects
         document.addEventListener('DOMContentLoaded', () => {
-            // Add stagger effect to navigation items
             const navItems = document.querySelectorAll('.nav-links a');
             navItems.forEach((item, index) => {
                 item.style.animationDelay = `${index * 0.1}s`;
                 item.classList.add('fade-in-nav');
             });
             
-            // Add entrance animation to hero elements
             const heroElements = document.querySelectorAll('.hero-badge, .hero h1, .hero-subtitle, .cta-container');
             heroElements.forEach((el, index) => {
                 el.style.animationDelay = `${0.2 + index * 0.2}s`;
@@ -1905,7 +1978,6 @@
         if ('ontouchstart' in window) {
             document.body.classList.add('touch-device');
             
-            // Disable hover effects on touch devices
             const style = document.createElement('style');
             style.textContent = `
                 .touch-device .hover-lift:hover {
@@ -1928,7 +2000,6 @@
         const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
         
         if (reducedMotionQuery.matches) {
-            // Disable animations for users who prefer reduced motion
             const style = document.createElement('style');
             style.textContent = `
                 *, *::before, *::after {
@@ -1948,10 +2019,8 @@
         }
 
         function initializeAdvancedFeatures() {
-            // Initialize advanced features only after DOM is ready
             console.log('Government Degree College Nelakondapally - Website Loaded Successfully');
             
-            // Add subtle entrance animations
             setTimeout(() => {
                 document.body.style.opacity = '1';
                 document.body.style.visibility = 'visible';
@@ -1959,7 +2028,6 @@
         }
     </script>
 
-    <!-- Additional CSS for enhanced animations -->
     <style>
         .fade-in-nav {
             animation: fadeInUp 0.6s ease forwards;
@@ -1996,7 +2064,6 @@
             transition: opacity 0.3s ease, visibility 0.3s ease;
         }
 
-        /* Enhanced focus states for accessibility */
         .keyboard-navigation button:focus,
         .keyboard-navigation a:focus,
         .keyboard-navigation input:focus {
@@ -2005,14 +2072,12 @@
             border-radius: 4px;
         }
 
-        /* Improved contrast for better readability */
         .high-contrast {
             --text-light: #ffffff;
             --glass-bg: rgba(255, 255, 255, 0.15);
             --glass-border: rgba(255, 255, 255, 0.3);
         }
 
-        /* Enhanced mobile responsiveness */
         @media (max-width: 480px) {
             .hero h1 {
                 font-size: 2.5rem;
@@ -2042,7 +2107,6 @@
             }
         }
 
-        /* Print styles */
         @media print {
             .hero,
             .floating-3d,
@@ -2065,7 +2129,6 @@
             }
         }
 
-        /* Dark mode enhancements */
         @media (prefers-color-scheme: dark) {
             :root {
                 --dark-bg: #000;
